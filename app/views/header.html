@@ -1,0 +1,13 @@
+<template name="header">
+    <header class="header">
+        <div class="header__logo">
+            performant!
+        </div>
+        <div class="header__options">
+           {{#if appRunning}}
+           {{else}}
+               <button class="circle-button circle-button--wide circle-button--success showOverlay" data-form-template="newTask">Add New Task <i class="fa fa-pencil"></i></button>
+           {{/if}}
+        </div>
+    </header>
+</template>

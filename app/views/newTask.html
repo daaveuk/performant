@@ -1,0 +1,37 @@
+<template name="newTask">
+    <form class="form">
+        <div class="form__title">
+            <h1>Add New Task:</h1>
+        </div>
+        <div class="form__row">
+            <label for="taskName" class="row__title">
+                Task Name:
+            </label>
+            <div class="row__option">
+                <input id="taskName" type="text" placeholder="Make a Cup of Tea">
+            </div>
+        </div>
+        <div class="form__row">
+            <label for="taskTime" class="row__title">
+                Time:
+            </label>
+            <div class="row__option">
+                <select id="taskTime" name="">
+                    <option value="30">30 Seconds</option>
+                    <option value="60">1 Minute</option>
+                    <option value="120">2 Minute</option>
+                    <option value="240">4 Minute</option>
+                </select>
+            </div>
+        </div>
+        <div class="form__row">
+            <label class="row__title">
+                Save Task:
+            </label>
+            <div class="row__option">
+                <button type="submit" class="circle-button circle-button--success submitTask"><i class="fa fa-check"></i></button>
+                <button type="button" class="circle-button circle-button--danger closeOverlay"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+    </form>
+</template>

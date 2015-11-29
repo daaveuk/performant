@@ -1,0 +1,153 @@
+// App Variables
+
+$baseColour:    #333;
+$successColour: #277554;
+$warningColour: #AA7939;
+$dangerColour:  #AA5939;
+
+$borderColour:  #eee;
+$borderRadius:  1px;
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size:14px;
+    color: $baseColour;
+    background-color:#f8f8f8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+    color:white;
+    background: #1e5799;
+    background: linear-gradient(45deg,  #1e5799 0%,#ad5faf 100%);
+    border-bottom:1px $borderColour solid;
+    @include j-cf;
+    &__logo {
+        @include j-column(1/2);
+        text-align:left;
+        text-transform:uppercase;
+        font-weight:700;
+        padding:15px;
+        font-size:36px;
+    }
+    &__options {
+        text-align:right;
+        padding:15px;
+    }
+}
+
+.task {
+    @include j-cf;
+    display:block;
+    border:1px solid $borderColour;
+    border-radius:$borderRadius;
+    padding:15px;
+    position:relative;
+    &__countdown {
+        position:absolute;
+        bottom:0;
+        left:0;
+        display:block;
+        height:2px;
+        width:100%;
+        background-color:$baseColour;
+        transition: width 0.1s, background-color 2s;
+        &--success {
+            background-color:$successColour;
+        }
+        &--warning {
+            background-color:$warningColour;
+        }
+        &--danger {
+            background-color:$dangerColour;
+        }
+    }
+    &__name {
+        @include j-column(1/2);
+        text-transform:uppercase;    
+    }
+    &__options {
+         @include j-column(1/2);
+        text-align:right;
+    }
+}
+
+
+.circle-button {
+    border:1px solid $borderColour;
+    display:inline-block;
+    border-radius:50%;
+    line-height:1;
+    background-color:white;
+    width:50px;
+    height:50px;
+    text-transform:uppercase;
+    opacity:1;
+    font-weight:bold;
+    box-shadow: 0 3px 0 -1px #eee;
+    color:$baseColour;
+    transition: opacity 0.5s;
+    &:hover {
+        background-color:#fafafa;
+         box-shadow: 0 3px 0 -1px #eaeaea;
+    }
+    &--success {
+        color:$successColour;
+    }
+    &--warning {
+        color:$warningColour;
+    }
+    &--danger {
+        color:$dangerColour;
+    }
+    &--wide {
+        width:auto;
+        border-radius:50px;
+        padding:0 15px;
+    }
+}
+
+.overlay {
+    position:fixed;
+    z-index:10;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba($baseColour, 0.8);
+    color:white;
+}
+
+.form {
+    @include j-center(600px)
+    &__row {
+        @include j-cf;
+        padding:15px 0;
+        &--horizontal {
+            .row__title, .row__option {
+                @include j-column(1/2);
+            }
+        }
+    }
+    .row {
+        &__title {
+            font-weight:300;
+            margin:14px 0;
+            display:block;
+        }
+        &__option {
+            color:$baseColour;
+            input, select {
+                display:block;
+                width:100%;
+                border:none;
+                border-radius:$borderRadius;
+                padding:10px 0;
+            }
+        }
+    }
+}
+

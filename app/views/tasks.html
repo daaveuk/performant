@@ -1,0 +1,27 @@
+<template name="tasks">
+   <div class="taskList">
+    {{#each task}}
+        <div class="task {{active}}" data-id="{{taskID}}">
+            {{#if appRunning }}
+                {{#if selectedTask}}     
+                    <span class="task__countdown {{percentageClass}}" style="width:{{taskPercentage}};"></span>
+                {{/if}}
+            {{/if}}
+            <div class="task__name">
+                <p><strong>{{time}}</strong> {{name}}</p>
+            </div>
+            <div class="task__options">
+               {{#if appRunning }}
+                   {{#if selectedTask}}
+                        <button class="circle-button circle-button--success finishTask"><i class="fa fa-check"></i></button>
+                   {{/if}}
+                {{else}}
+                <button class="circle-button circle-button--success startTask"><i class="fa fa-play"></i></button>
+                <button class="circle-button circle-button--warning updateTask" data-form-template="updateTask"><i class="fa fa-pencil"></i></button>
+                <button class="circle-button circle-button--danger removeTask"><i class="fa fa-times"></i></button>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+   </div>
+</template>

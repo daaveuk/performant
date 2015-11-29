@@ -1,0 +1,7 @@
+<template name="overlay">  
+  {{#if activeForm}}
+    <div class="overlay">
+      {{> Template.dynamic template=activeForm}}
+    </div>
+  {{/if}}
+</template>
