@@ -4,6 +4,7 @@ if (Meteor.isClient) {
     // Set the State of the Application. The Application can either be in "Running" mode or not. Running Mode Disables the edit functionality and proceeds to countdown through tasks.
     Meteor.startup(function () {
         Session.set('isRunning', false);
+        Session.set('timeBeaten', false);
     });
     
     // This code controls the overlay. A data attribute is can be applied to any button with the "showOverlay" class to display any one of the forms used.
@@ -11,12 +12,10 @@ if (Meteor.isClient) {
     
     Template.body.events({  
         'click .showOverlay': function(event, template) {
-            console.log();
             var form = template.$(event.target).data('form-template');
             Session.set('activeForm', form);
         },
         'click .closeOverlay':function() {
-            console.log();
             Session.set('activeForm', '');
         }
     });
@@ -158,22 +157,28 @@ if (Meteor.isClient) {
     Template.results.events({
         "submit form": function (event) {
             event.preventDefault();
-            var selectedTask = session.get('selectedTask');
-            var timeRemaining = session.get('remainingTime');
-            Tasks.update(selectedTask, {$set: {time: timeRemaining} });
+            var selectedTask = Session.get('selectedTask');
+            var timeRemaining = Session.get('timeRemaining');
+            var originalTime = Session.get('originalTime');
+            var newTime = Math.round(originalTime - timeRemaining);
+            console.log(selectedTask);
+            console.log(timeRemaining);
+            Tasks.update(selectedTask, {$set: {time: newTime} });
             Session.set('activeForm', '');
         }
     });
     
-    Template.results.helper({
-        "winState": function () {
-            var win = Session.get("timeBeaten");
-            if(win === true) {
-                return true;
-            }
+    Template.results.helpers({
+        'winState': function () {
+            var win = Session.get('timeBeaten');
+            return win;
         },
-        "percentage": function () {
-            return "Hi!";
+        "newTime": function () {
+            var timeRemaining = Session.get('timeRemaining');
+            var originalTime = Session.get('originalTime');
+            var newTime = Math.round(originalTime - timeRemaining)
+            var diff = originalTime - newTime;
+            return diff;
         }
     });
 }

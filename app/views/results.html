@@ -1,15 +1,16 @@
 <template name="results">
     <div class="results">
-       <form>
+       <form class="form">
             <h1>Your Results:</h1>
-            {{#if timeBeaten}}
-            <p>You were {{percentage}} faster completing this task than last time.</p>
+            {{winState}}
+            {{#if winState}}
+            <p>You were {{newTime}} Seconds faster completing this task than last time.</p>
             <p>Set this as the new time to beat?</p>
             {{ else }}
             <p>Drats! You didn't get more performant this time. Better look next time!</p>
             {{/if}}
             <div class="row__option">
-               {{#if timeBeaten}}
+               {{#if winState}}
                 <button type="submit" class="circle-button circle-button--success submitTask"><i class="fa fa-check"></i></button>
                {{/if}}
                 <button type="button" class="circle-button circle-button--danger closeOverlay"><i class="fa fa-times"></i></button>

@@ -1,4 +1,9 @@
-// App Variables
+
+// Responsive Breakpoints
+
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
 
 $baseColour:    #333;
 $successColour: #277554;
@@ -22,18 +27,26 @@ body {
     background: #1e5799;
     background: linear-gradient(45deg,  #1e5799 0%,#ad5faf 100%);
     border-bottom:1px $borderColour solid;
+    padding:15px;
+    text-align:center;
     @include j-cf;
     &__logo {
-        @include j-column(1/2);
-        text-align:left;
         text-transform:uppercase;
         font-weight:700;
-        padding:15px;
-        font-size:36px;
+        font-size:24px;
+        line-height:50px;
+        @media(min-width: $sm) {
+            text-align:left;
+            font-size:36px;
+            @include j-column(1/2);
+        }
     }
     &__options {
-        text-align:right;
-        padding:15px;
+        @media(min-width: $sm) {
+            text-align:right;
+            @include j-column(1/2);
+        }
+        
     }
 }
 
@@ -80,8 +93,8 @@ body {
     border-radius:50%;
     line-height:1;
     background-color:white;
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
     text-transform:uppercase;
     opacity:1;
     font-weight:bold;
@@ -122,10 +135,13 @@ body {
 }
 
 .form {
-    @include j-center(600px)
+    @include j-center(300px)
+        @media(min-width: $sm) {
+            @include j-center(600px)
+        }
     &__row {
         @include j-cf;
-        padding:15px 0;
+        padding:5px 0;
         &--horizontal {
             .row__title, .row__option {
                 @include j-column(1/2);
